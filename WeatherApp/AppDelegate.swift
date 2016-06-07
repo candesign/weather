@@ -41,6 +41,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    
+    // 3DTouch
+    func handleShortCutItem(shortcutItem: UIApplicationShortcutItem) -> Bool{
+        var handled = false
+        let alertController = UIAlertController(title: "Wow", message: "⚽️ ⚽️ ⚽️ ⚽️", preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(okAction)
+        
+        // Display an alert indicating the shortcut selected from the home screen.
+        window!.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+        handled = true
+        print("Badum-tsss")
+        return handled
+    }
+    
+    /*
+     Called when the user activates your application by selecting a shortcut on the home screen, except when
+     application(_:,willFinishLaunchingWithOptions:) or application(_:didFinishLaunchingWithOptions) returns `false`.
+     You should handle the shortcut in those callbacks and return `false` if possible. In that case, this
+     callback is used if your application is already launched in the background.
+     */
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: Bool -> Void) {
+        let handledShortCutItem = handleShortCutItem(shortcutItem)
+        
+        completionHandler(handledShortCutItem)
+    }
+    
 
 }
 
